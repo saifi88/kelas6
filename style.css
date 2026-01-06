@@ -1,0 +1,668 @@
+/* =========================
+   RESET DASAR
+   ========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f8f9fb;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* =========================
+   HEADER & LOGO
+   ========================= */
+
+.logo {
+  width: 60px;
+  max-width: 20vw;
+  height: auto;
+  margin-left: 12px;
+  border-radius: 50%;
+}
+
+header {
+  background-color: #004a99;
+  color: #ffffff;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+header h1 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.site-sub {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Tombol hamburger (disembunyikan di desktop) */
+.nav-toggle {
+  margin-left: auto;
+  background: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 1.2rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: none; /* default: hanya tampil di HP via media query */
+}
+
+/* =========================
+   NAVBAR - DESKTOP
+   ========================= */
+
+.navbar {
+  background-color: #003366;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 12px;
+  gap: 18px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 10px;
+  display: inline-block;
+}
+
+/* Menu aktif di navbar */
+.navbar a.active {
+  background-color: #002850;
+  border-radius: 4px;
+}
+
+/* Dropdown dasar */
+.navbar .dropdown {
+  position: relative;
+}
+
+.navbar .dropdown > a::after {
+  content: " ▾";
+}
+
+/* Konten dropdown (default hidden) */
+.navbar .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 36px;
+  left: 0;
+  min-width: 180px;
+  background-color: #003366;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  z-index: 999;
+}
+
+.navbar .dropdown-content a {
+  display: block;
+  padding: 10px 12px;
+  color: #ffffff;
+}
+
+/* Hover untuk desktop */
+.navbar .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Mode "open" (dipakai JS untuk HP) */
+.navbar .dropdown.open .dropdown-content {
+  display: block;
+}
+
+/* =========================
+   HERO / BANNER (INDEX)
+   ========================= */
+
+/* HERO / SLIDER */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  background-color: #002850;
+}
+
+/* Container slider */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Tiap slide */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* Gambar slide */
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Teks di atas gambar */
+.hero-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 18%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.55);
+  padding: 10px 18px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+}
+
+.hero-caption h2 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+.hero-caption p {
+  font-size: 0.95rem;
+}
+
+/* Titik indikator di bawah slider */
+.hero-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.hero-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  background-color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.hero-dot.active {
+  background-color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Responsif hero di HP */
+@media (max-width: 768px) {
+  .hero {
+    height: 240px;
+  }
+
+  .hero-caption {
+    bottom: 14%;
+    padding: 8px 14px;
+  }
+
+  .hero-caption h2 {
+    font-size: 1.2rem;
+  }
+
+  .hero-caption p {
+    font-size: 0.8rem;
+  }
+}
+
+
+/* =========================
+   LAYOUT UTAMA
+   ========================= */
+
+.container {
+  max-width: 1000px;
+  margin: 22px auto;
+  padding: 0 18px;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #003366;
+  font-weight: 700;
+}
+
+/* Grid cards umum */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  color: #003366;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.95rem;
+}
+
+/* ===== Layout dengan sidebar (index) ===== */
+.layout-with-sidebar {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* konten utama lebih lebar */
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Gallery images (untuk halaman galeri) */
+.gallery-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Footer */
+footer {
+  background-color: #003366;
+  color: #ffffff;
+  text-align: center;
+  padding: 14px 0;
+  margin-top: 30px;
+}
+
+/* Small text helper */
+.small {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* =========================
+   SIDEBAR KALENDER
+   ========================= */
+
+.calendar-section .section-title {
+  margin-bottom: 8px;
+}
+
+.calendar-widget {
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+#cal-month-year {
+  font-weight: 600;
+  color: #003366;
+}
+
+.cal-nav {
+  border: 1px solid #ccd4e0;
+  background: #f1f4fb;
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cal-nav:hover {
+  background: #e1e7f5;
+}
+
+.cal-weekdays,
+.cal-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.cal-weekdays span {
+  font-weight: 600;
+  padding: 4px 0;
+  color: #003366;
+  font-size: 0.75rem;
+}
+
+/* Mendukung span atau button di dalam cal-days */
+.cal-days span,
+.cal-days button {
+  border: none;
+  background: transparent;
+  padding: 4px 0;
+  margin: 2px 0;
+  cursor: default;
+  font-size: 0.8rem;
+}
+
+/* Hari di bulan lain (padding) */
+.cal-days .other-month {
+  color: #c0c4ce;
+}
+
+/* Hari di bulan ini */
+.cal-days .current-month {
+  color: #333;
+}
+
+/* Hari ini */
+.cal-days .today {
+  background: #003366;
+  color: #fff;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   HALAMAN MATERI PELAJARAN
+   ========================= */
+
+.materi-intro {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Grid khusus daftar pelajaran */
+.subjects-grid {
+  margin-top: 16px;
+}
+
+/* Kartu tiap mata pelajaran */
+.subject-card {
+  max-width: 220px;      /* supaya kartunya kecil & elegan */
+  margin: 0 auto;        /* biar kartunya center di kolomnya */
+  text-align: center;
+}
+
+/* Gambar sampul buku */
+.subject-card img {
+  display: block;
+  width: 100%;           /* ikut lebar kartu (max 220px) */
+  height: auto;          /* proporsional, TIDAK terpotong */
+  margin: 0 auto 8px;
+  border-radius: 6px;
+}
+
+/* Nama pelajaran di kartu materi */
+.subject-card h3 {
+  margin-bottom: 4px;
+}
+
+/* Link nama buku */
+.book-link {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #003366;
+  text-decoration: none;
+}
+
+.book-link:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Tampilan artikel (artikel.html)
+   ========================= */
+
+.artikel-grid {
+  align-items: stretch;
+}
+
+.artikel-card {
+  display: flex;
+}
+
+.artikel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+/* Thumbnail artikel */
+.artikel-thumb {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+/* Meta: tanggal + penulis */
+.artikel-meta {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Ringkasan artikel */
+.artikel-ringkasan {
+  font-size: 0.9rem;
+}
+
+/* Isi lengkap artikel */
+.artikel-body {
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* Tombol baca selengkapnya */
+.artikel-toggle {
+  margin-top: 6px;
+  align-self: flex-start;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  border: 1px solid #003366;
+  background-color: #003366;
+  color: #fff;
+  cursor: pointer;
+}
+
+.artikel-toggle:hover {
+  background-color: #002850;
+}
+
+/* =========================
+   HEADER KONTAK + POSISI
+   ========================= */
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Kontainer ikon */
+.header-contact {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+/* Style ikon bundar */
+.contact-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+/* SVG di dalam ikon */
+.contact-circle .contact-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Email & WA warna berbeda */
+.contact-circle.email { border-color: #ffcb41; }
+.contact-circle.wa    { border-color: #25D366; }
+
+/* Hover efek */
+.contact-circle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.12);
+}
+
+/* =========================
+   RESPONSIVE HP / TABLET
+   ========================= */
+
+@media (max-width: 900px) {
+  .layout-with-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header di HP: judul ke bawah, hamburger tampil */
+  header {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  header h1 {
+    font-size: 1.1rem;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  /* Navbar jadi vertical, hidden dulu */
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+    display: none;
+    padding: 8px 0;
+  }
+
+  /* Saat tombol hamburger diklik (class .open ditambah via JS) */
+  .navbar.open {
+    display: flex;
+  }
+
+  .navbar a {
+    width: 100%;
+    padding: 10px 16px;
+  }
+
+  /* Dropdown di HP: posisi statis, tanpa shadow */
+  .navbar .dropdown-content {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: #002850;
+  }
+
+  /* Nonaktifkan hover di HP, biar tidak bentrok dengan klik */
+  .navbar .dropdown:hover .dropdown-content {
+    display: none;
+  }
+
+  /* Yang dipakai: class .open dari JS */
+  .navbar .dropdown.open .dropdown-content {
+    display: block;
+  }
+
+  /* Hero boleh sedikit lebih pendek di HP */
+  .hero {
+    height: 220px;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .artikel-card {
+    flex-direction: column;
+  }
+
+  .artikel-thumb {
+    max-height: 200px;
+  }
+
+  .header-left {
+    width: 100%;
+  }
+
+  .header-right {
+    margin-left: auto;
+    gap: 10px;
+  }
+
+  .contact-circle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .contact-circle .contact-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
